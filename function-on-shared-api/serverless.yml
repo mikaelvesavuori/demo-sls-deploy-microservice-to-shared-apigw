@@ -1,0 +1,38 @@
+service:
+  name: shared-api-func
+
+plugins:
+  - serverless-webpack
+
+provider:
+  name: aws
+  stage: ${opt:stage,'dev'}
+  region: eu-north-1
+  runtime: nodejs12.x
+  memorySize: 512
+  timeout: 5
+  logRetentionInDays: 14
+  versionFunctions: false
+  apiGateway:
+    restApiId: ${self:custom.apiIds.${self:provider.stage}.api}
+    restApiRootResourceId: ${self:custom.apiIds.${self:provider.stage}.resource}
+
+custom:
+  apiIds:
+    dev:
+      api: abcdefghij # CHANGE THIS TO YOUR VALUE
+      resource: abcdefghij # CHANGE THIS TO YOUR VALUE
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+
+package:
+  individually: true
+
+functions:
+  sharedFunction:
+    handler: functions/sharedFunction.handler
+    events:
+      - http:
+          method: GET
+          path: sharedFunction

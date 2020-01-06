@@ -1,0 +1,45 @@
+service:
+  name: shared-api-base
+
+plugins:
+  - serverless-webpack
+
+provider:
+  name: aws
+  stage: ${opt:stage,'dev'}
+  region: eu-north-1
+  runtime: nodejs12.x
+  memorySize: 512
+  timeout: 5
+  logRetentionInDays: 14
+  versionFunctions: false
+
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+
+package:
+  individually: true
+
+resources:
+  Resources:
+    SharedApiGW: # This name is what the actual API Gateway will be named
+      Type: AWS::ApiGateway::RestApi
+      Properties:
+        Name: SharedApiGW
+
+  Outputs:
+    apiGatewayRestApiId:
+      Value:
+        Ref: SharedApiGW
+      Export:
+        Name: MyApiGateway-restApiId
+
+    apiGatewayRestApiRootResourceId:
+      Value:
+        Fn::GetAtt:
+          - SharedApiGW
+          - RootResourceId
+      Export:
+        Name: MyApiGateway-rootResourceId

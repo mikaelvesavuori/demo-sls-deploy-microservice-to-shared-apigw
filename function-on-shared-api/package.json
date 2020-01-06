@@ -1,0 +1,27 @@
+{
+	"name": "demo-shared-api-func",
+	"version": "1.0.0",
+	"description": "Demo for setting up an external service that will be shared under an existing API base",
+	"main": "index.js",
+	"author": "Mikael Vesavuori",
+	"license": "ISC",
+	"devDependencies": {
+		"@babel/cli": "^7.7.7",
+		"@babel/core": "^7.7.7",
+		"@babel/plugin-proposal-class-properties": "^7.7.4",
+		"@babel/plugin-syntax-class-properties": "^7.7.4",
+		"@babel/plugin-syntax-dynamic-import": "^7.7.4",
+		"@babel/preset-env": "^7.7.7",
+		"babel-eslint": "^10.0.3",
+		"babel-loader": "^8.0.6",
+		"core-js": "^3.6.1",
+		"eslint": "^6.8.0",
+		"eslint-config-prettier": "^6.9.0",
+		"eslint-plugin-security": "^1.4.0",
+		"prettier": "^1.19.1",
+		"prettier-eslint": "^9.0.1",
+		"pretty-quick": "^2.0.1",
+		"serverless-webpack": "^5.3.1",
+		"webpack": "^4.41.5"
+	}
+}
