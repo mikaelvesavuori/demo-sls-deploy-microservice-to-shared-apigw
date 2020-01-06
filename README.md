@@ -15,3 +15,19 @@ You should have Serverless Framework installed on your system, and have the poss
 3. Collect the 10-digit API ID and 10-digit API Resource ID from your new API in the API Gateway page on the AWS console ([https://eu-north-1.console.aws.amazon.com/apigateway/home?region=eu-north-1#/apis](https://eu-north-1.console.aws.amazon.com/apigateway/home?region=eu-north-1#/apis)). Add those IDs in `function-on-a-shared-api/serverless.yml`, around lines 23-24.
 4. Deploy the shared service under the base API, from the folder `function-on-shared-api` with `sls deploy`
 5. You will receive an endpoint which is new, however go to API Gateway ([https://eu-north-1.console.aws.amazon.com/apigateway/home?region=eu-north-1#/apis](https://eu-north-1.console.aws.amazon.com/apigateway/home?region=eu-north-1#/apis)) in the AWS console/GUI and locate the base path for the shared API and suffix it with `/sharedFunction` to get a complete URL such as `https://1bnm8ko8vh.execute-api.eu-north-1.amazonaws.com/dev/sharedFunction` – that will be the URL you should use
+
+## Where to find IDs
+
+As per [Serverless instructions](https://serverless.com/framework/docs/providers/aws/events/apigateway/#manually-configuring-shared-api-gateway):
+
+```
+Use AWS console on browser, navigate to the API Gateway console. Select your already existing API Gateway. Top Navbar should look like this
+
+	APIs>apigateway-Name (xxxxxxxxxx)>Resources>/ (yyyyyyyyyy)
+
+Here xxxxxxxxx is your restApiId and yyyyyyyyyy the restApiRootResourceId.
+```
+
+And here's how it looks inside of AWS:
+
+![API GW ID in AWS](where-to-find-ids.png)
